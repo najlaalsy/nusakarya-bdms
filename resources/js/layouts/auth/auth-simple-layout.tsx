@@ -1,38 +1,58 @@
-import { Link } from '@inertiajs/react';
-import AppLogoIcon from '@/components/app-logo-icon';
-import { home } from '@/routes';
 import type { AuthLayoutProps } from '@/types';
-
 export default function AuthSimpleLayout({
     children,
     title,
     description,
 }: AuthLayoutProps) {
     return (
-        <div className="flex min-h-svh flex-col items-center justify-center gap-6 bg-background p-6 md:p-10">
-            <div className="w-full max-w-sm">
-                <div className="flex flex-col gap-8">
-                    <div className="flex flex-col items-center gap-4">
-                        <Link
-                            href={home()}
-                            className="flex flex-col items-center gap-2 font-medium"
-                        >
-                            <div className="mb-1 flex h-9 w-9 items-center justify-center rounded-md">
-                                <AppLogoIcon className="size-9 fill-current text-[var(--foreground)] dark:text-white" />
-                            </div>
-                            <span className="sr-only">{title}</span>
-                        </Link>
-
-                        <div className="space-y-2 text-center">
-                            <h1 className="text-xl font-medium">{title}</h1>
-                            <p className="text-center text-sm text-muted-foreground">
-                                {description}
-                            </p>
-                        </div>
+        <main className="flex min-h-svh items-center justify-center bg-[#F5F7FA] px-4 py-12">
+            <div className="w-full max-w-[420px] space-y-8">
+                {/* Brand */}
+                <div className="flex items-center justify-center gap-3">
+                    <div className="flex size-14 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-slate-200 bg-white p-1">
+                        <img
+                            src="/logopt.jpg"
+                            alt="PT Nusakarya Digital Indonesia"
+                            className="size-full object-contain"
+                        />
                     </div>
-                    {children}
+
+                    <div>
+                        <p className="text-lg font-semibold tracking-tight text-[#1E3A5F]">
+                            Business Documents Management System
+                        </p>
+                        <p className="text-xs text-slate-500">
+                            Sistem Informasi Manajemen Dokumen Bisnis Terpusat
+                        </p>
+                    </div>
                 </div>
+
+                {/* Authentication Card */}
+                <section className="rounded-xl border border-slate-200 bg-white p-7 text-slate-900 shadow-sm sm:p-9">
+                    <div className="mb-7 space-y-2">
+                        <h1 className="text-2xl font-semibold tracking-tight text-slate-900">
+                            {title}
+                        </h1>
+
+                        <p className="text-sm leading-6 text-slate-500">
+                            {description}
+                        </p>
+                    </div>
+
+                    {children}
+                </section>
+
+                {/* Footer */}
+                <footer className="space-y-2 text-center">
+                    <p className="text-xs text-slate-500">
+                        Authorized personnel only.
+                    </p>
+
+                    <p className="text-xs text-slate-400">
+                        © {new Date().getFullYear()} PT Nusakarya Digital Indonesia. All rights reserved.
+                    </p>
+                </footer>
             </div>
-        </div>
+        </main>
     );
 }

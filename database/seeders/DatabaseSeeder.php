@@ -15,11 +15,38 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        if (! app()->environment(['local', 'testing'])) {
+            return;
+        }
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        $users = [
+            [
+                'name' => 'Test Staff',
+                'email' => 'staff@bdms.test',
+            ],
+            [
+                'name' => 'Test Manager',
+                'email' => 'manager@bdms.test',
+            ],
+            [
+                'name' => 'Test Director',
+                'email' => 'director@bdms.test',
+            ],
+            [
+                'name' => 'Test Administrator',
+                'email' => 'admin@bdms.test',
+            ],
+        ];
+
+        foreach ($users as $user) {
+            User::updateOrCreate(
+                ['email' => $user['email']],
+                [
+                    'name' => $user['name'],
+                    'password' => 'BdmsTest@2026',
+                    'email_verified_at' => now(),
+                ],
+            );
+        }
     }
 }

@@ -29,7 +29,7 @@ export default function Login({ status, canResetPassword }: Props) {
                     <>
                         <div className="grid gap-6">
                             <div className="grid gap-2">
-                                <Label htmlFor="email">Email address</Label>
+                                <Label htmlFor="email" className="text-foreground">Email address</Label>
                                 <Input
                                     id="email"
                                     type="email"
@@ -45,16 +45,15 @@ export default function Login({ status, canResetPassword }: Props) {
 
                             <div className="grid gap-2">
                                 <div className="flex items-center">
-                                    <Label htmlFor="password">Password</Label>
-
+                                <Label htmlFor="password" className="text-foreground">Password</Label>
                                     {canResetPassword && (
-                                        <TextLink
-                                            href={request()}
-                                            className="ml-auto text-sm"
-                                            tabIndex={5}
-                                        >
-                                            Forgot your password?
-                                        </TextLink>
+                                    <TextLink
+                                        href={request()}
+                                        className="ml-auto text-sm text-primary"
+                                        tabIndex={5}
+                                    >
+                                        Forgot your password?
+                                    </TextLink>
                                     )}
                                 </div>
 
@@ -76,7 +75,9 @@ export default function Login({ status, canResetPassword }: Props) {
                                     name="remember"
                                     tabIndex={3}
                                 />
-                                <Label htmlFor="remember">Remember me</Label>
+                                <Label htmlFor="remember" className="text-foreground">
+                                    Remember me
+                                </Label>
                             </div>
 
                             <Button
